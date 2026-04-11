@@ -7,8 +7,6 @@ import { RouterProvider } from 'react-router/dom';
 import './index.css';
 import App from './App.tsx';
 
-
-
 export const router = createBrowserRouter([
   {
     index: true,

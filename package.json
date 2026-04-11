@@ -11,7 +11,8 @@
     "test:open": "cypress open --component --browser chrome",
     "testE2E:open": "cypress open --e2e --browser chrome",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
   },
   "dependencies": {
     "@ui5/webcomponents": "2.21.0",
@@ -30,9 +31,12 @@
     "@vitejs/plugin-react": "6.0.1",
     "cypress": "15.13.0",
     "eslint": "9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "0.5.2",
     "globals": "17.4.0",
+    "prettier": "^3.8.2",
     "typescript-eslint": "8.58.0",
     "vite": "8.0.5"
   }
