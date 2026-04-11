@@ -1,23 +1,14 @@
-import '@ui5/webcomponents-react/dist/Assets.js';
-import { ThemeProvider } from '@ui5/webcomponents-react';
-import { StrictMode } from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter } from 'react-router';
-import { RouterProvider } from 'react-router/dom';
+
+import { App } from './app';
 import './index.css';
-import App from './App.tsx';
 
-export const router = createBrowserRouter([
-  {
-    index: true,
-    element: <App />,
-  },
-]);
+const root = document.getElementById('root');
+if (!root) throw new Error('No root element found');
 
-createRoot(document.getElementById('root') as HTMLElement).render(
-  <StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </StrictMode>,
+createRoot(root).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 );
