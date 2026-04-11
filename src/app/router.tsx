@@ -3,6 +3,10 @@ import { useMemo } from 'react';
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 
+import AppRoot, {
+  ErrorBoundary as AppRootErrorBoundary,
+} from '@/app/routes/app/root';
+import { ProtectedRoute } from '@/app/routes/protected-route';
 import { paths } from '@/config/paths';
 
 const convert = (queryClient: QueryClient) => (m: any) => {
@@ -18,8 +22,23 @@ const convert = (queryClient: QueryClient) => (m: any) => {
 export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
-      path: paths.home.path,
-      lazy: () => import('./routes/landing').then(convert(queryClient)),
+      path: paths.login.path,
+      lazy: () => import('./routes/login').then(convert(queryClient)),
+    },
+    {
+      path: paths.app.root.path,
+      element: (
+        <ProtectedRoute>
+          <AppRoot />
+        </ProtectedRoute>
+      ),
+      ErrorBoundary: AppRootErrorBoundary,
+      children: [
+        {
+          path: paths.app.home.path,
+          lazy: () => import('./routes/app/home').then(convert(queryClient)),
+        },
+      ],
     },
   ]);
 
