@@ -23,8 +23,10 @@ export default function LoginForm() {
 
   if (error?.response?.status === 400) {
     formErrors = error?.response?.data;
+  } else if (error?.response?.status === 401) {
+    responseError = 'Invalid username or password.';
   } else if (error?.message) {
-    responseError = error.message;
+    responseError = 'Something went wrong. Please try again later.';
   }
 
   const emailError =
@@ -69,13 +71,19 @@ export default function LoginForm() {
       />
 
       {responseError && (
-        <MessageStrip design="Negative">
-          Something went wrong. Please try again later.
-        </MessageStrip>
+        <MessageStrip design="Negative">{responseError}</MessageStrip>
       )}
 
       <Button design="Emphasized" disabled={isPending} onClick={handleSubmit}>
         Login
+      </Button>
+
+      <Button
+        design="Default"
+        disabled={isPending}
+        onClick={() => navigate(paths.register.getHref())}
+      >
+        Register
       </Button>
     </>
   );

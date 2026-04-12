@@ -3,6 +3,10 @@ export const paths = {
     path: '/',
     getHref: () => '/',
   },
+  register: {
+    path: '/register',
+    getHref: () => '/register',
+  },
   app: {
     root: {
       path: '/app',
