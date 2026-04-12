@@ -30,6 +30,15 @@ export const createAppRouter = (queryClient: QueryClient) =>
       lazy: () => import('./routes/register').then(convert(queryClient)),
     },
     {
+      path: paths.registrationSuccessful.path,
+      lazy: () =>
+        import('./routes/registration-successful').then(convert(queryClient)),
+    },
+    {
+      path: paths.activeUser.path,
+      lazy: () => import('./routes/users/activate').then(convert(queryClient)),
+    },
+    {
       path: paths.app.root.path,
       element: (
         <ProtectedRoute>

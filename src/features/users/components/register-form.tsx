@@ -72,7 +72,7 @@ export default function RegisterForm() {
         last_name: lastNameRef.current.value,
       },
       {
-        onSuccess: () => navigate(paths.app.home.getHref()),
+        onSuccess: () => navigate(paths.registrationSuccessful.getHref()),
       },
     );
   };
