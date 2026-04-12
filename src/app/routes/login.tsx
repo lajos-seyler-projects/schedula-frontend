@@ -1,26 +1,7 @@
-import { paths } from '@/config/paths';
-import { useLogin } from '@/features/users/api/login';
-import { Button, FlexBox, Input, Title } from '@ui5/webcomponents-react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import LoginForm from '@/features/users/components/login-form';
+import { FlexBox, Title } from '@ui5/webcomponents-react';
 
 export default function LoginRoute() {
-  const navigate = useNavigate();
-  const { mutate, isPending } = useLogin();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    mutate(
-      { email, password },
-      {
-        onSuccess: () => navigate(paths.app.home.getHref()),
-      },
-    );
-  };
-
   return (
     <FlexBox
       direction="Column"
@@ -40,22 +21,7 @@ export default function LoginRoute() {
           Login
         </Title>
 
-        <Input
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ width: '100%' }}
-        />
-
-        <Input
-          type="Password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ width: '100%' }}
-        />
-
-        <Button design="Emphasized" disabled={isPending} onClick={handleSubmit}>
-          Login
-        </Button>
+        <LoginForm />
       </FlexBox>
     </FlexBox>
   );
