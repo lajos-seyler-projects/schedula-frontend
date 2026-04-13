@@ -1,11 +1,10 @@
 # TokenVerifyRequest
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**token** | **string** |  | [default to undefined]
+| Name      | Type       | Description | Notes                  |
+| --------- | ---------- | ----------- | ---------------------- |
+| **token** | **string** |             | [default to undefined] |
 
 ## Example
 
@@ -13,7 +12,7 @@ Name | Type | Description | Notes
 import { TokenVerifyRequest } from './api';
 
 const instance: TokenVerifyRequest = {
-    token,
+  token,
 };
 ```
 

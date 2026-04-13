@@ -1,22 +1,19 @@
 # UsersApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to _http://localhost_
 
-|Method | HTTP request | Description|
-|------------- | ------------- | -------------|
-|[**usersActivateRetrieve**](#usersactivateretrieve) | **GET** /api/users/{uuid}/activate/{token}/ | |
+| Method                                              | HTTP request                                | Description |
+| --------------------------------------------------- | ------------------------------------------- | ----------- |
+| [**usersActivateRetrieve**](#usersactivateretrieve) | **GET** /api/users/{uuid}/activate/{token}/ |             |
 
 # **usersActivateRetrieve**
-> ActivationResponse usersActivateRetrieve()
 
+> ActivationResponse usersActivateRetrieve()
 
 ### Example
 
 ```typescript
-import {
-    UsersApi,
-    Configuration
-} from './api';
+import { UsersApi, Configuration } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new UsersApi(configuration);
@@ -24,19 +21,15 @@ const apiInstance = new UsersApi(configuration);
 let token: string; //Activation token of the User. (default to undefined)
 let uuid: string; //UUID of the User. (default to undefined)
 
-const { status, data } = await apiInstance.usersActivateRetrieve(
-    token,
-    uuid
-);
+const { status, data } = await apiInstance.usersActivateRetrieve(token, uuid);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **token** | [**string**] | Activation token of the User. | defaults to undefined|
-| **uuid** | [**string**] | UUID of the User. | defaults to undefined|
-
+| Name      | Type         | Description                   | Notes                 |
+| --------- | ------------ | ----------------------------- | --------------------- |
+| **token** | [**string**] | Activation token of the User. | defaults to undefined |
+| **uuid**  | [**string**] | UUID of the User.             | defaults to undefined |
 
 ### Return type
 
@@ -48,14 +41,13 @@ const { status, data } = await apiInstance.usersActivateRetrieve(
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** |  |  -  |
+| ----------- | ----------- | ---------------- |
+| **200**     |             | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
