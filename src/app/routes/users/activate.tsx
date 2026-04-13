@@ -7,15 +7,13 @@ import { useNavigate, useParams } from 'react-router';
 export default function ActiveUserRoute() {
   const navigate = useNavigate();
   const { uuid, token } = useParams();
+
   const [status, setStatus] = useState<'pending' | 'success' | 'error'>(
-    'pending',
+    uuid && token ? 'pending' : 'error',
   );
 
   useEffect(() => {
-    if (!uuid || !token) {
-      setStatus('error');
-      return;
-    }
+    if (!uuid || !token) return;
 
     activateEmail(uuid, token)
       .then(() => setStatus('success'))
@@ -35,7 +33,6 @@ export default function ActiveUserRoute() {
         <Text>Email successfully verified! You can login now!</Text>
       )}
       {status === 'error' && <Text>Invalid or expired token.</Text>}
-
       {status !== 'pending' && (
         <Button onClick={() => navigate(paths.login.getHref())}>
           Go to Login

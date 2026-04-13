@@ -36,7 +36,8 @@ api.interceptors.response.use(
 
         originalRequest.headers.Authorization = `Bearer ${newAccess}`;
         return api(originalRequest);
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         useAuthStore.getState().logout();
       }
     }

@@ -20,5 +20,5 @@ export const useAuth = () => {
     };
 
     initAuth();
-  }, []);
+  }, [setAccessToken, setLoading]);
 };
