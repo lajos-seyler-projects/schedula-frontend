@@ -1,3 +1,9 @@
+## 0.1.2 (2026-04-14)
+
+### Fix
+
+- **deps**: update dependency react-router to v7.14.1
+
 ## 0.1.1 (2026-04-13)
 
 ### Fix
