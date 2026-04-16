@@ -14,6 +14,7 @@ import {
   UserPreferencesRequest,
 } from '@/types/api';
 import {
+  BusyIndicator,
   Button,
   Form,
   FormGroup,
@@ -70,22 +71,31 @@ export default function RegionalSettings() {
     });
   }
 
+  let content;
+
   if (userPreferencesError) {
-    return (
-      <UserSettingsItem
-        headerText="Regional Settings"
-        icon="globe"
-        text="Regional Settings"
-        tooltip="Regional Settings"
-        tabs={
-          <UserSettingsView>
-            <ErrorMessage
-              titleText="Failed to load your preferences"
-              subtitleText="Something went wrong while trying to load your user preferences."
-            />
-          </UserSettingsView>
-        }
+    content = (
+      <ErrorMessage
+        titleText="Failed to load your preferences"
+        subtitleText="Something went wrong while trying to load your user preferences."
       />
+    );
+  } else if (userPreferencesIsPending) {
+    content = <BusyIndicator active delay={0} />;
+  } else {
+    content = (
+      <Form>
+        <FormGroup>
+          <DecimalFormatFormItem />
+          <DateFormatFormItem />
+          <TimeFormatFormItem />
+          <TimezoneFormItem />
+        </FormGroup>
+
+        <FormGroup>
+          <Button onClick={handleSave}>Save Settings</Button>
+        </FormGroup>
+      </Form>
     );
   }
 
@@ -95,22 +105,7 @@ export default function RegionalSettings() {
       icon="globe"
       text="Regional Settings"
       tooltip="Regional Settings"
-      tabs={
-        <UserSettingsView>
-          <Form>
-            <FormGroup>
-              <DecimalFormatFormItem />
-              <DateFormatFormItem />
-              <TimeFormatFormItem />
-              <TimezoneFormItem />
-            </FormGroup>
-
-            <FormGroup>
-              <Button onClick={handleSave}>Save Settings</Button>
-            </FormGroup>
-          </Form>
-        </UserSettingsView>
-      }
+      tabs={<UserSettingsView>{content}</UserSettingsView>}
     />
   );
 }
