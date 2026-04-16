@@ -1,11 +1,10 @@
-# UserPreferences
+# UserPreferencesRequest
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **number** |  | [readonly] [default to undefined]
 **date_format** | [**DateFormatEnum**](DateFormatEnum.md) |  | [default to undefined]
 **decimal_format** | [**DecimalFormatEnum**](DecimalFormatEnum.md) |  | [default to undefined]
 **time_zone** | **string** |  | [default to undefined]
@@ -16,10 +15,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { UserPreferences } from './api';
+import { UserPreferencesRequest } from './api';
 
-const instance: UserPreferences = {
-    id,
+const instance: UserPreferencesRequest = {
     date_format,
     decimal_format,
     time_zone,

@@ -1,6 +1,6 @@
 # DecimalFormatEnum
 
-* `us` - 1,234,567.8 * `eu` - 1 234 567,8 * `de` - 1.234.567,8 * `nn` - 1234567.8 * `ch` - 1\'234\'567.8
+* `us` - us * `eu` - eu * `de` - de * `nn` - nn * `ch` - ch
 
 ## Enum
 

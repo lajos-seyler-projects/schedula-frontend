@@ -1,6 +1,6 @@
 # DateFormatEnum
 
-* `is` - YYYY-MM-DD * `ed` - DD.MM.YYYY * `es` - DD/MM/YYYY * `us` - MM/DD/YYYY * `dt` - YYYY.MM.DD * `cp` - YYYYMMDD
+* `is` - is * `ed` - ed * `es` - es * `us` - us * `dt` - dt * `cp` - cp
 
 ## Enum
 

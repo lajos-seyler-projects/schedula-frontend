@@ -1,6 +1,6 @@
 # TimeFormatEnum
 
-* `12` - 12-hour * `24` - 24-hour
+* `12` - 12 * `24` - 24
 
 ## Enum
 

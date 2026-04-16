@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**mePartialUpdate**](#mepartialupdate) | **PATCH** /api/me/ | |
+|[**mePreferencesCreate**](#mepreferencescreate) | **POST** /api/me/preferences/ | |
 |[**mePreferencesPartialUpdate**](#mepreferencespartialupdate) | **PATCH** /api/me/preferences/ | |
 |[**mePreferencesRetrieve**](#mepreferencesretrieve) | **GET** /api/me/preferences/ | |
 |[**meRetrieve**](#meretrieve) | **GET** /api/me/ | |
@@ -43,6 +44,57 @@ const { status, data } = await apiInstance.mePartialUpdate(
 ### Return type
 
 **UserMe**
+
+### Authorization
+
+[jwtAuth](../README.md#jwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mePreferencesCreate**
+> UserPreferences mePreferencesCreate(userPreferencesRequest)
+
+
+### Example
+
+```typescript
+import {
+    MeApi,
+    Configuration,
+    UserPreferencesRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new MeApi(configuration);
+
+let userPreferencesRequest: UserPreferencesRequest; //
+
+const { status, data } = await apiInstance.mePreferencesCreate(
+    userPreferencesRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **userPreferencesRequest** | **UserPreferencesRequest**|  | |
+
+
+### Return type
+
+**UserPreferences**
 
 ### Authorization
 
