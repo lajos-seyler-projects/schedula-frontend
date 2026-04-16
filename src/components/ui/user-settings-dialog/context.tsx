@@ -16,6 +16,7 @@ interface RegionalSettingsContextValue extends RegionalSettingsState {
   setDateFormat: (dateFormat: string) => void;
   setDecimalFormat: (decimalFormat: string) => void;
   setTimeFormat: (timeFormat: string) => void;
+  setTimezone: (timezone: string) => void;
 }
 
 const RegionalSettingsContext =
@@ -46,6 +47,12 @@ export function RegionalSettingsProvider({ children }: PropsWithChildren) {
       payload: { field: 'time_format', value: timeFormat },
     });
   }, []);
+  const setTimezone = useCallback((timezone: string) => {
+    dispatch({
+      type: 'fieldChanged',
+      payload: { field: 'time_zone', value: timezone },
+    });
+  }, []);
 
   const value = {
     ...state,
@@ -53,6 +60,7 @@ export function RegionalSettingsProvider({ children }: PropsWithChildren) {
     setDateFormat,
     setDecimalFormat,
     setTimeFormat,
+    setTimezone,
   };
 
   return (

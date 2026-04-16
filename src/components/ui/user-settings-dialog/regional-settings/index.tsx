@@ -3,6 +3,7 @@ import { useRegionalSettingsContext } from '@/components/ui/user-settings-dialog
 import DateFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/date-format-form-item';
 import DecimalFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/decimal-format-form-item';
 import TimeFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/time-format-form-item';
+import TimezoneFormItem from '@/components/ui/user-settings-dialog/regional-settings/timezone-form-item.tsx';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import { useUpdateUserPreferences } from '@/features/users/api/update-user-preferences';
 import { makeEnumGuard } from '@/lib/utils';
@@ -34,7 +35,7 @@ export default function RegionalSettings() {
 
   const preferencesData = preferencesResponse?.data;
 
-  const { date_format, decimal_format, time_format, dispatch } =
+  const { date_format, decimal_format, time_format, time_zone, dispatch } =
     useRegionalSettingsContext();
 
   const mutation = useUpdateUserPreferences();
@@ -58,6 +59,10 @@ export default function RegionalSettings() {
 
     if (time_format && isValidTimeFormat(time_format)) {
       requestData['time_format'] = time_format;
+    }
+
+    if (time_zone) {
+      requestData['time_zone'] = time_zone;
     }
 
     mutation.mutate({
@@ -94,9 +99,10 @@ export default function RegionalSettings() {
         <UserSettingsView>
           <Form>
             <FormGroup>
-              <DateFormatFormItem />
               <DecimalFormatFormItem />
+              <DateFormatFormItem />
               <TimeFormatFormItem />
+              <TimezoneFormItem />
             </FormGroup>
 
             <FormGroup>
