@@ -1,4 +1,4 @@
-interface RegionalSettingsState {
+export interface RegionalSettingsState {
   date_format?: string;
   decimal_format?: string;
   time_format?: string;
