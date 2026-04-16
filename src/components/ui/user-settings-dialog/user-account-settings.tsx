@@ -11,6 +11,11 @@ import {
   UserSettingsItem,
   UserSettingsView,
 } from '@ui5/webcomponents-react';
+import styled from 'styled-components';
+
+const StyledFlexBox = styled(FlexBox)`
+  min-height: 200px;
+`;
 
 export default function UserAccountSettings() {
   const { data: meResponse, error, isPending } = useMe();
@@ -31,9 +36,9 @@ export default function UserAccountSettings() {
     );
   } else if (isPending) {
     content = (
-      <FlexBox alignItems="Center" justifyContent="Center">
+      <StyledFlexBox alignItems="Center" justifyContent="Center">
         <BusyIndicator active delay={0} />
-      </FlexBox>
+      </StyledFlexBox>
     );
   } else {
     content = (

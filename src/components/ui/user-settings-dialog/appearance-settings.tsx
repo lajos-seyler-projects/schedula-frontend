@@ -1,11 +1,56 @@
+import ErrorMessage from '@/components/ui/error-message';
+import { useFioriThemeChoices } from '@/features/users/api/get-fiori-theme-choices';
+import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import {
+  BusyIndicator,
+  FlexBox,
   UserSettingsAppearanceView,
-  UserSettingsAppearanceViewGroup,
   UserSettingsAppearanceViewItem,
   UserSettingsItem,
 } from '@ui5/webcomponents-react';
+import styled from 'styled-components';
+
+const StyledFlexBox = styled(FlexBox)`
+  min-height: 200px;
+`;
 
 export default function AppearanceSettings() {
+  const { data: themesReponse, error, isPending } = useFioriThemeChoices();
+  const {
+    data: preferencesResponse,
+    error: userPreferencesError,
+    isPending: userPreferencesIsPending,
+  } = useUserPreferences();
+
+  let content;
+
+  if (error || userPreferencesError) {
+    content = (
+      <ErrorMessage
+        titleText="Error loading themes"
+        subtitleText="Something went wrong while trying to load theme options."
+      />
+    );
+  } else if (isPending || userPreferencesIsPending) {
+    content = (
+      <StyledFlexBox alignItems="Center" justifyContent="Center">
+        <BusyIndicator active delay={0} />
+      </StyledFlexBox>
+    );
+  } else {
+    content = (
+      <>
+        {themesReponse?.data.map((choice) => (
+          <UserSettingsAppearanceViewItem
+            itemKey={choice.value}
+            text={choice.label}
+            selected={choice.value === preferencesResponse?.data.fiori_theme}
+          />
+        ))}
+      </>
+    );
+  }
+
   return (
     <UserSettingsItem
       headerText="Appearance"
@@ -14,42 +59,7 @@ export default function AppearanceSettings() {
       tooltip="Appearance"
     >
       <UserSettingsAppearanceView text="Themes">
-        <UserSettingsAppearanceViewGroup headerText="SAP Horizon">
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_horizon"
-            text="SAP Morning Horizon"
-          />
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_horizon_dark"
-            text="SAP Evening Horizon"
-          />
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_horizon_hcb"
-            text="SAP Horizon High Contrast Black"
-          />
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_horizon_hcw"
-            text="SAP Horizon High Contrast White"
-          />
-        </UserSettingsAppearanceViewGroup>
-        <UserSettingsAppearanceViewGroup headerText="SAP Quartz">
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_fiori_3"
-            text="SAP Quartz Light"
-          />
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_fiori_3_dark"
-            text="SAP Quartz Dark"
-          />
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_fiori_3_hcb"
-            text="SAP Quartz High Contrast Black"
-          />
-          <UserSettingsAppearanceViewItem
-            itemKey="sap_fiori_3_hcw"
-            text="SAP Quartz High Contrast White"
-          />
-        </UserSettingsAppearanceViewGroup>
+        {content}
       </UserSettingsAppearanceView>
     </UserSettingsItem>
   );
