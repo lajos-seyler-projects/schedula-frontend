@@ -1,6 +1,9 @@
 import ErrorMessage from '@/components/ui/error-message';
 import { useFioriThemeChoices } from '@/features/users/api/get-fiori-theme-choices';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
+import { useUpdateUserPreferences } from '@/features/users/api/update-user-preferences';
+import { makeEnumGuard } from '@/lib/utils';
+import { FioriThemeEnum } from '@/types/api';
 import {
   BusyIndicator,
   FlexBox,
@@ -14,6 +17,8 @@ const StyledFlexBox = styled(FlexBox)`
   min-height: 200px;
 `;
 
+const isFioriTheme = makeEnumGuard(FioriThemeEnum);
+
 export default function AppearanceSettings() {
   const { data: themesReponse, error, isPending } = useFioriThemeChoices();
   const {
@@ -21,6 +26,13 @@ export default function AppearanceSettings() {
     error: userPreferencesError,
     isPending: userPreferencesIsPending,
   } = useUserPreferences();
+
+  const mutation = useUpdateUserPreferences();
+
+  function handleOnAppearanceClick(fioriTheme: string) {
+    if (!isFioriTheme(fioriTheme)) return;
+    mutation.mutate({ data: { fiori_theme: fioriTheme } });
+  }
 
   let content;
 
@@ -45,6 +57,7 @@ export default function AppearanceSettings() {
             itemKey={choice.value}
             text={choice.label}
             selected={choice.value === preferencesResponse?.data.fiori_theme}
+            onClick={() => handleOnAppearanceClick(choice.value)}
           />
         ))}
       </>
