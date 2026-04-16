@@ -2,6 +2,7 @@ import ErrorMessage from '@/components/ui/error-message';
 import { useRegionalSettingsContext } from '@/components/ui/user-settings-dialog/context';
 import DateFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/date-format-form-item';
 import DecimalFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/decimal-format-form-item';
+import ShowTimezoneFormItem from '@/components/ui/user-settings-dialog/regional-settings/show-timezone-form-item';
 import TimeFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/time-format-form-item';
 import TimezoneFormItem from '@/components/ui/user-settings-dialog/regional-settings/timezone-form-item.tsx';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
@@ -36,8 +37,14 @@ export default function RegionalSettings() {
 
   const preferencesData = preferencesResponse?.data;
 
-  const { date_format, decimal_format, time_format, time_zone, dispatch } =
-    useRegionalSettingsContext();
+  const {
+    date_format,
+    decimal_format,
+    time_format,
+    time_zone,
+    show_timezone,
+    dispatch,
+  } = useRegionalSettingsContext();
 
   const mutation = useUpdateUserPreferences();
 
@@ -66,6 +73,10 @@ export default function RegionalSettings() {
       requestData['time_zone'] = time_zone;
     }
 
+    if (show_timezone !== undefined) {
+      requestData['show_timezone'] = show_timezone;
+    }
+
     mutation.mutate({
       data: requestData,
     });
@@ -90,6 +101,7 @@ export default function RegionalSettings() {
           <DateFormatFormItem />
           <TimeFormatFormItem />
           <TimezoneFormItem />
+          <ShowTimezoneFormItem />
         </FormGroup>
 
         <FormGroup>
