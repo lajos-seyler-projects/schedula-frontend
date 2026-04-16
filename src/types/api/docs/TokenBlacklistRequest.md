@@ -1,10 +1,11 @@
 # TokenBlacklistRequest
 
+
 ## Properties
 
-| Name        | Type       | Description | Notes                  |
-| ----------- | ---------- | ----------- | ---------------------- |
-| **refresh** | **string** |             | [default to undefined] |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**refresh** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -12,7 +13,7 @@
 import { TokenBlacklistRequest } from './api';
 
 const instance: TokenBlacklistRequest = {
-  refresh,
+    refresh,
 };
 ```
 

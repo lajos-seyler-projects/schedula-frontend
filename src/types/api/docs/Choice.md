@@ -1,21 +1,21 @@
-# TokenObtainPairRequest
+# Choice
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **string** |  | [default to undefined]
-**password** | **string** |  | [default to undefined]
+**value** | **string** |  | [default to undefined]
+**label** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { TokenObtainPairRequest } from './api';
+import { Choice } from './api';
 
-const instance: TokenObtainPairRequest = {
-    email,
-    password,
+const instance: Choice = {
+    value,
+    label,
 };
 ```
 

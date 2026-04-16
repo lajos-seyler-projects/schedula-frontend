@@ -1,21 +1,19 @@
-# TokenObtainPairRequest
+# TimezoneResponse
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **string** |  | [default to undefined]
-**password** | **string** |  | [default to undefined]
+**__root__** | **{ [key: string]: Array&lt;TimezoneItem&gt;; }** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { TokenObtainPairRequest } from './api';
+import { TimezoneResponse } from './api';
 
-const instance: TokenObtainPairRequest = {
-    email,
-    password,
+const instance: TimezoneResponse = {
+    __root__,
 };
 ```
 

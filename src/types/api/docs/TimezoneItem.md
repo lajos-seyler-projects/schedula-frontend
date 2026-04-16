@@ -1,21 +1,21 @@
-# TokenObtainPairRequest
+# TimezoneItem
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **string** |  | [default to undefined]
-**password** | **string** |  | [default to undefined]
+**value** | **string** |  | [default to undefined]
+**offset** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { TokenObtainPairRequest } from './api';
+import { TimezoneItem } from './api';
 
-const instance: TokenObtainPairRequest = {
-    email,
-    password,
+const instance: TimezoneItem = {
+    value,
+    offset,
 };
 ```
 
