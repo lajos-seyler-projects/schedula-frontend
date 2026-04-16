@@ -36,7 +36,7 @@ export default function TimezoneFormItem() {
         {regions.map((region) => {
           const timezones = timezoneChoices.data[region];
           return (
-            <ComboBoxItemGroup headerText={region}>
+            <ComboBoxItemGroup key={region} headerText={region}>
               {timezones
                 .sort((a, b) => {
                   const getOffset = (offset: string) =>
@@ -45,6 +45,7 @@ export default function TimezoneFormItem() {
                 })
                 .map((timezone) => (
                   <ComboBoxItem
+                    key={timezone.value}
                     text={timezone.value}
                     additionalText={timezone.offset}
                   />

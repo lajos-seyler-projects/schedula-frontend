@@ -54,6 +54,7 @@ export default function AppearanceSettings() {
       <>
         {themesReponse?.data.map((choice) => (
           <UserSettingsAppearanceViewItem
+            key={choice.value}
             itemKey={choice.value}
             text={choice.label}
             selected={choice.value === preferencesResponse?.data.fiori_theme}
