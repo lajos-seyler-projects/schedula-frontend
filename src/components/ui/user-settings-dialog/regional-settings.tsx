@@ -1,10 +1,15 @@
 import ErrorMessage from '@/components/ui/error-message';
 import { useDateFormatChoices } from '@/features/users/api/get-date-format-choices';
+import { useDecimalFormatChoices } from '@/features/users/api/get-decimal-format-choices';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import { useUpdateUserPreferences } from '@/features/users/api/update-user-preferences';
 import { regionalSettingsReducer } from '@/features/users/reducers/regional-settings-reducer';
 import { makeEnumGuard } from '@/lib/utils';
-import { DateFormatEnum, UserPreferencesRequest } from '@/types/api';
+import {
+  DateFormatEnum,
+  DecimalFormatEnum,
+  UserPreferencesRequest,
+} from '@/types/api';
 import {
   Button,
   Form,
@@ -19,6 +24,7 @@ import {
 import { useEffect, useReducer } from 'react';
 
 const isValidDateFormat = makeEnumGuard(DateFormatEnum);
+const isValidDecimalFormat = makeEnumGuard(DecimalFormatEnum);
 
 export default function RegionalSettings() {
   const {
@@ -31,6 +37,11 @@ export default function RegionalSettings() {
     error: dateFormatChoicesError,
     isPending: dateFormatChoicesIsPending,
   } = useDateFormatChoices();
+  const {
+    data: decimalFormatChoicesResponse,
+    error: decimalFormatChoicesError,
+    isPending: decimalFormatChoicesIsPending,
+  } = useDecimalFormatChoices();
 
   const preferencesData = preferencesResponse?.data;
 
@@ -49,6 +60,10 @@ export default function RegionalSettings() {
 
     if (state?.date_format && isValidDateFormat(state?.date_format)) {
       requestData['date_format'] = state.date_format;
+    }
+
+    if (state?.decimal_format && isValidDecimalFormat(state?.decimal_format)) {
+      requestData['decimal_format'] = state.decimal_format;
     }
 
     mutation.mutate({
@@ -99,6 +114,27 @@ export default function RegionalSettings() {
                   }
                 >
                   {dateFormatChoicesResponse?.data.map((choice) => (
+                    <Option key={choice.value} value={choice.value}>
+                      {choice.label}
+                    </Option>
+                  ))}
+                </Select>
+              </FormItem>
+
+              <FormItem labelContent={<Label>Decimal Format</Label>}>
+                <Select
+                  value={state?.decimal_format}
+                  onChange={(event) =>
+                    dispatch({
+                      type: 'fieldChanged',
+                      payload: {
+                        field: 'decimal_format',
+                        value: event.target.value,
+                      },
+                    })
+                  }
+                >
+                  {decimalFormatChoicesResponse?.data.map((choice) => (
                     <Option key={choice.value} value={choice.value}>
                       {choice.label}
                     </Option>
