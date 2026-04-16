@@ -15,6 +15,7 @@ interface RegionalSettingsContextValue extends RegionalSettingsState {
   dispatch: React.ActionDispatch<[action: RegionalSettingsAction]>;
   setDateFormat: (dateFormat: string) => void;
   setDecimalFormat: (decimalFormat: string) => void;
+  setTimeFormat: (timeFormat: string) => void;
 }
 
 const RegionalSettingsContext =
@@ -39,12 +40,19 @@ export function RegionalSettingsProvider({ children }: PropsWithChildren) {
       }),
     [],
   );
+  const setTimeFormat = useCallback((timeFormat: string) => {
+    dispatch({
+      type: 'fieldChanged',
+      payload: { field: 'time_format', value: timeFormat },
+    });
+  }, []);
 
   const value = {
     ...state,
     dispatch,
     setDateFormat,
     setDecimalFormat,
+    setTimeFormat,
   };
 
   return (

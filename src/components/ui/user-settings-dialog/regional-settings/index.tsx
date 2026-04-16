@@ -2,12 +2,14 @@ import ErrorMessage from '@/components/ui/error-message';
 import { useRegionalSettingsContext } from '@/components/ui/user-settings-dialog/context';
 import DateFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/date-format-form-item';
 import DecimalFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/decimal-format-form-item';
+import TimeFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/time-format-form-item';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import { useUpdateUserPreferences } from '@/features/users/api/update-user-preferences';
 import { makeEnumGuard } from '@/lib/utils';
 import {
   DateFormatEnum,
   DecimalFormatEnum,
+  TimeFormatEnum,
   UserPreferencesRequest,
 } from '@/types/api';
 import {
@@ -21,6 +23,7 @@ import { useEffect } from 'react';
 
 const isValidDateFormat = makeEnumGuard(DateFormatEnum);
 const isValidDecimalFormat = makeEnumGuard(DecimalFormatEnum);
+const isValidTimeFormat = makeEnumGuard(TimeFormatEnum);
 
 export default function RegionalSettings() {
   const {
@@ -31,7 +34,7 @@ export default function RegionalSettings() {
 
   const preferencesData = preferencesResponse?.data;
 
-  const { date_format, decimal_format, dispatch } =
+  const { date_format, decimal_format, time_format, dispatch } =
     useRegionalSettingsContext();
 
   const mutation = useUpdateUserPreferences();
@@ -51,6 +54,10 @@ export default function RegionalSettings() {
 
     if (decimal_format && isValidDecimalFormat(decimal_format)) {
       requestData['decimal_format'] = decimal_format;
+    }
+
+    if (time_format && isValidTimeFormat(time_format)) {
+      requestData['time_format'] = time_format;
     }
 
     mutation.mutate({
@@ -89,6 +96,7 @@ export default function RegionalSettings() {
             <FormGroup>
               <DateFormatFormItem />
               <DecimalFormatFormItem />
+              <TimeFormatFormItem />
             </FormGroup>
 
             <FormGroup>
