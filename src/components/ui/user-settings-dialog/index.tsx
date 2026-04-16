@@ -1,4 +1,5 @@
 import AppearanceSettings from '@/components/ui/user-settings-dialog/appearance-settings';
+import RegionalSettings from '@/components/ui/user-settings-dialog/regional-settings';
 import UserAccountSettings from '@/components/ui/user-settings-dialog/user-account-settings';
 import {
   UserSettingsDialog,
@@ -12,6 +13,7 @@ export default function SchedulaUserSettingsDialog({
     <UserSettingsDialog {...props}>
       <UserAccountSettings />
       <AppearanceSettings />
+      <RegionalSettings />
     </UserSettingsDialog>
   );
 }
