@@ -3,6 +3,6 @@ interface Timezone {
   offset: string;
 }
 
-interface TimezoneMap {
+export interface TimezoneMap {
   [region: string]: Timezone[];
 }

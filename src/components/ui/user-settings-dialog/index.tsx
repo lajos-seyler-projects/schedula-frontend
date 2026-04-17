@@ -1,5 +1,5 @@
 import AppearanceSettings from '@/components/ui/user-settings-dialog/appearance-settings';
-import { RegionalSettingsProvider } from '@/components/ui/user-settings-dialog/context';
+import { RegionalSettingsProvider } from '@/components/ui/user-settings-dialog/context-provider';
 import RegionalSettings from '@/components/ui/user-settings-dialog/regional-settings';
 import UserAccountSettings from '@/components/ui/user-settings-dialog/user-account-settings';
 import {

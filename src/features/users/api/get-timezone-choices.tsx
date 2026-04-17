@@ -2,6 +2,7 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import api from '@/lib/api-client';
 import { QueryConfig } from '@/lib/react-query';
+import { TimezoneMap } from '@/types';
 
 export const getTimezoneChoices = (): Promise<{ data: TimezoneMap }> => {
   return api.get('/user-preferences/timezone-choices');

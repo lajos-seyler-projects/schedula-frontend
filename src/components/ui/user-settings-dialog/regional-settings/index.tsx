@@ -62,7 +62,7 @@ export default function RegionalSettings() {
     if (preferencesData) {
       dispatch({ type: 'preferencesFetched', payload: preferencesData });
     }
-  }, [preferencesData]);
+  }, [preferencesData, dispatch]);
 
   function handleSave() {
     const requestData: Partial<PatchedUserPreferencesRequest> = {};

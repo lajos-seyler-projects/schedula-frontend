@@ -37,9 +37,10 @@ export function regionalSettingsReducer(
       return {
         ...action.payload,
       };
-    case 'fieldChanged':
+    case 'fieldChanged': {
       const { field, value } = action.payload;
       return { ...state, [field]: value };
+    }
     default:
       return state;
   }

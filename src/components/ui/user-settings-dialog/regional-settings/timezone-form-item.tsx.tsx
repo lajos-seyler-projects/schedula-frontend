@@ -15,7 +15,7 @@ export default function TimezoneFormItem() {
 
   const { data: timezoneChoices, error, isPending } = useTimezoneChoices();
 
-  let regions = Object.keys(timezoneChoices?.data || {});
+  const regions = Object.keys(timezoneChoices?.data || {});
 
   let content;
 
