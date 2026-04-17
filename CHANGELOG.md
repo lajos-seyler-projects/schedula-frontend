@@ -1,3 +1,9 @@
+## 0.2.1 (2026-04-17)
+
+### Fix
+
+- **deps**: update ui5-webcomponents monorepo to v2.21.1
+
 ## 0.2.0 (2026-04-17)
 
 ### Feat
