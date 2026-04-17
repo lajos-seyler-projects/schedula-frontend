@@ -1,3 +1,28 @@
+## 0.2.0 (2026-04-17)
+
+### Feat
+
+- add an example datetime display to regional settings dialog
+- update api types
+- implement show timezone preference setting
+- handle error state for user preferences
+- implement timezone preference setting
+- implement time format preference setting
+- implement decimal format preference
+- initial implementation of regional settings with date format input
+- implement update theme feature
+- fetch fiori theme options from backend
+- add user settings dialog component without logic
+
+### Fix
+
+- add missing key props
+
+### Refactor
+
+- fix linting errors and warnings
+- RegionalSettings using context
+
 ## 0.1.2 (2026-04-14)
 
 ### Fix
