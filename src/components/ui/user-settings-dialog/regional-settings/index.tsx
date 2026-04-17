@@ -1,4 +1,5 @@
 import ErrorMessage from '@/components/ui/error-message';
+import UserPreferenceDatetime from '@/components/ui/user-preference-datetime';
 import { useRegionalSettingsContext } from '@/components/ui/user-settings-dialog/context';
 import DateFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/date-format-form-item';
 import DecimalFormatFormItem from '@/components/ui/user-settings-dialog/regional-settings/decimal-format-form-item';
@@ -11,18 +12,27 @@ import { makeEnumGuard } from '@/lib/utils';
 import {
   DateFormatEnum,
   DecimalFormatEnum,
+  PatchedUserPreferencesRequest,
   TimeFormatEnum,
-  UserPreferencesRequest,
 } from '@/types/api';
 import {
   BusyIndicator,
   Button,
   Form,
   FormGroup,
+  FormItem,
+  Label,
+  MessageStrip,
+  Text,
   UserSettingsItem,
   UserSettingsView,
 } from '@ui5/webcomponents-react';
 import { useEffect } from 'react';
+import styled from 'styled-components';
+
+const StyledMessageStrip = styled(MessageStrip)`
+  margin-top: 1rem;
+`;
 
 const isValidDateFormat = makeEnumGuard(DateFormatEnum);
 const isValidDecimalFormat = makeEnumGuard(DecimalFormatEnum);
@@ -55,7 +65,7 @@ export default function RegionalSettings() {
   }, [preferencesData]);
 
   function handleSave() {
-    const requestData: Partial<UserPreferencesRequest> = {};
+    const requestData: Partial<PatchedUserPreferencesRequest> = {};
 
     if (date_format && isValidDateFormat(date_format)) {
       requestData['date_format'] = date_format;
@@ -106,6 +116,18 @@ export default function RegionalSettings() {
 
         <FormGroup>
           <Button onClick={handleSave}>Save Settings</Button>
+        </FormGroup>
+
+        <FormGroup>
+          <FormItem labelContent={<Label>Example Date & Time</Label>}>
+            <Text>
+              <UserPreferenceDatetime />
+            </Text>
+          </FormItem>
+          <StyledMessageStrip design="Information" hideCloseButton>
+            This preview reflects your saved settings. Make changes above and
+            click Save to see them applied here.
+          </StyledMessageStrip>
         </FormGroup>
       </Form>
     );
