@@ -1,8 +1,10 @@
 import { MainErrorFallback } from '@/components/errors/main';
+import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import { useAuth } from '@/hooks/useAuth';
-import { queryConfig } from '@/lib/react-query';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { setTheme } from '@ui5/webcomponents-base';
+import { ThemeProvider } from '@ui5/webcomponents-react';
+import '@ui5/webcomponents-react/dist/Assets.js';
 import * as React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -11,21 +13,19 @@ type AppProviderProps = {
 };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [queryClient] = React.useState(
-    () =>
-      new QueryClient({
-        defaultOptions: queryConfig,
-      }),
-  );
+  const { data } = useUserPreferences();
 
+  if (data?.data.fiori_theme) {
+    setTheme(data?.data.fiori_theme);
+  }
   useAuth();
 
   return (
     <ErrorBoundary FallbackComponent={MainErrorFallback}>
-      <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
         {import.meta.env.DEV && <ReactQueryDevtools />}
         {children}
-      </QueryClientProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 };

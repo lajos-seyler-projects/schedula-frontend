@@ -1,3 +1,4 @@
+import UserSettingsDialog from '@/components/ui/user-settings-dialog';
 import { useMe } from '@/features/users/api/get-me';
 import { useLogout } from '@/features/users/api/logout';
 import { ShellBarProfileClickEventDetail } from '@ui5/webcomponents-fiori/dist/ShellBar.js';
@@ -11,6 +12,7 @@ import {
   UserMenu,
   UserMenuAccount,
   UserMenuDomRef,
+  UserMenuItem,
 } from '@ui5/webcomponents-react';
 import { HTMLAttributes, useRef, useState } from 'react';
 
@@ -24,6 +26,7 @@ export default function AppShellBar({
 }: AppShellBarProps) {
   const userMenuRef = useRef<UserMenuDomRef | null>(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [userSettingsMenuOpen, setUserSettingsMenuOpen] = useState(false);
 
   const { data: meResponse } = useMe();
   const logoutMutation = useLogout();
@@ -65,6 +68,18 @@ export default function AppShellBar({
         }
         onSignOutClick={() => logoutMutation.mutate()}
         onClose={() => setUserMenuOpen(false)}
+      >
+        <UserMenuItem
+          data-settings="true"
+          icon="action-settings"
+          text="Settings"
+          onClick={() => setUserSettingsMenuOpen(true)}
+        />
+      </UserMenu>
+
+      <UserSettingsDialog
+        open={userSettingsMenuOpen}
+        onBeforeClose={() => setUserSettingsMenuOpen(false)}
       />
     </>
   );

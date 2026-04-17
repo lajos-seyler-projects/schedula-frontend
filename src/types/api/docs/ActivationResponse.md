@@ -1,10 +1,11 @@
 # ActivationResponse
 
+
 ## Properties
 
-| Name        | Type       | Description | Notes                  |
-| ----------- | ---------- | ----------- | ---------------------- |
-| **message** | **string** |             | [default to undefined] |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**message** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -12,7 +13,7 @@
 import { ActivationResponse } from './api';
 
 const instance: ActivationResponse = {
-  message,
+    message,
 };
 ```
 

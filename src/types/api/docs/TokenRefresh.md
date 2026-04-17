@@ -1,10 +1,11 @@
 # TokenRefresh
 
+
 ## Properties
 
-| Name       | Type       | Description | Notes                             |
-| ---------- | ---------- | ----------- | --------------------------------- |
-| **access** | **string** |             | [readonly] [default to undefined] |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**access** | **string** |  | [readonly] [default to undefined]
 
 ## Example
 
@@ -12,7 +13,7 @@
 import { TokenRefresh } from './api';
 
 const instance: TokenRefresh = {
-  access,
+    access,
 };
 ```
 
