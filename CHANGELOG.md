@@ -1,3 +1,13 @@
+## 0.3.0 (2026-04-25)
+
+### Feat
+
+- implement UsersFilterBar with default variants
+- implement users list page using GenericListPage component
+- add Pagination component
+- add initial implementation of GenericListPage
+- add users route
+
 ## 0.2.1 (2026-04-17)
 
 ### Fix
