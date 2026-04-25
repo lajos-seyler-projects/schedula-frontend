@@ -1,18 +1,17 @@
 # UserDetails
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**id** | **number** |  | [readonly] [default to undefined]
-**username** | **string** |  | [default to undefined]
-**email** | **string** |  | [default to undefined]
-**first_name** | **string** |  | [optional] [default to undefined]
-**last_name** | **string** |  | [optional] [default to undefined]
-**is_superuser** | **boolean** | Designates that this user has all permissions without explicitly assigning them. | [optional] [default to undefined]
-**date_joined** | **string** |  | [optional] [default to undefined]
-**last_login** | **string** |  | [optional] [default to undefined]
+| Name             | Type        | Description                                                                      | Notes                             |
+| ---------------- | ----------- | -------------------------------------------------------------------------------- | --------------------------------- |
+| **uuid**         | **string**  |                                                                                  | [readonly] [default to undefined] |
+| **username**     | **string**  |                                                                                  | [default to undefined]            |
+| **email**        | **string**  |                                                                                  | [default to undefined]            |
+| **first_name**   | **string**  |                                                                                  | [optional] [default to undefined] |
+| **last_name**    | **string**  |                                                                                  | [optional] [default to undefined] |
+| **is_superuser** | **boolean** | Designates that this user has all permissions without explicitly assigning them. | [optional] [default to undefined] |
+| **date_joined**  | **string**  |                                                                                  | [optional] [default to undefined] |
+| **last_login**   | **string**  |                                                                                  | [optional] [default to undefined] |
 
 ## Example
 
@@ -20,14 +19,14 @@ Name | Type | Description | Notes
 import { UserDetails } from './api';
 
 const instance: UserDetails = {
-    id,
-    username,
-    email,
-    first_name,
-    last_name,
-    is_superuser,
-    date_joined,
-    last_login,
+  uuid,
+  username,
+  email,
+  first_name,
+  last_name,
+  is_superuser,
+  date_joined,
+  last_login,
 };
 ```
 

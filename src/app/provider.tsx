@@ -1,6 +1,7 @@
 import { MainErrorFallback } from '@/components/errors/main';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import { useAuth } from '@/hooks/useAuth';
+import { FiltersProvider } from '@/stores/filters-context';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { setTheme } from '@ui5/webcomponents-base';
 import { ThemeProvider } from '@ui5/webcomponents-react';
@@ -23,8 +24,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <ErrorBoundary FallbackComponent={MainErrorFallback}>
       <ThemeProvider>
-        {import.meta.env.DEV && <ReactQueryDevtools />}
-        {children}
+        <FiltersProvider>
+          {import.meta.env.DEV && <ReactQueryDevtools />}
+          {children}
+        </FiltersProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

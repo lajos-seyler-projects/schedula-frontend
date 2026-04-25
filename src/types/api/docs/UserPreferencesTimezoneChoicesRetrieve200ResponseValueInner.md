@@ -1,12 +1,11 @@
 # UserPreferencesTimezoneChoicesRetrieve200ResponseValueInner
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**value** | **string** |  | [default to undefined]
-**offset** | **string** |  | [default to undefined]
+| Name       | Type       | Description | Notes                  |
+| ---------- | ---------- | ----------- | ---------------------- |
+| **value**  | **string** |             | [default to undefined] |
+| **offset** | **string** |             | [default to undefined] |
 
 ## Example
 
@@ -14,8 +13,8 @@ Name | Type | Description | Notes
 import { UserPreferencesTimezoneChoicesRetrieve200ResponseValueInner } from './api';
 
 const instance: UserPreferencesTimezoneChoicesRetrieve200ResponseValueInner = {
-    value,
-    offset,
+  value,
+  offset,
 };
 ```
 

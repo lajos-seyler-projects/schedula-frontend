@@ -1,15 +1,14 @@
 # UserRegistrationRequest
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**username** | **string** |  | [default to undefined]
-**email** | **string** |  | [default to undefined]
-**password** | **string** |  | [default to undefined]
-**first_name** | **string** |  | [optional] [default to undefined]
-**last_name** | **string** |  | [optional] [default to undefined]
+| Name           | Type       | Description | Notes                             |
+| -------------- | ---------- | ----------- | --------------------------------- |
+| **username**   | **string** |             | [default to undefined]            |
+| **email**      | **string** |             | [default to undefined]            |
+| **password**   | **string** |             | [default to undefined]            |
+| **first_name** | **string** |             | [optional] [default to undefined] |
+| **last_name**  | **string** |             | [optional] [default to undefined] |
 
 ## Example
 
@@ -17,11 +16,11 @@ Name | Type | Description | Notes
 import { UserRegistrationRequest } from './api';
 
 const instance: UserRegistrationRequest = {
-    username,
-    email,
-    password,
-    first_name,
-    last_name,
+  username,
+  email,
+  password,
+  first_name,
+  last_name,
 };
 ```
 

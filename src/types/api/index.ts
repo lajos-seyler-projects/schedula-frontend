@@ -1,3 +1,4 @@
+/* tslint:disable */
 /**
  * Schedula
  * An activity planner

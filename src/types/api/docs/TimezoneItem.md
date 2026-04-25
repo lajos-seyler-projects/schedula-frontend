@@ -1,12 +1,11 @@
 # TimezoneItem
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**value** | **string** |  | [default to undefined]
-**offset** | **string** |  | [default to undefined]
+| Name       | Type       | Description | Notes                  |
+| ---------- | ---------- | ----------- | ---------------------- |
+| **value**  | **string** |             | [default to undefined] |
+| **offset** | **string** |             | [default to undefined] |
 
 ## Example
 
@@ -14,8 +13,8 @@ Name | Type | Description | Notes
 import { TimezoneItem } from './api';
 
 const instance: TimezoneItem = {
-    value,
-    offset,
+  value,
+  offset,
 };
 ```
 
