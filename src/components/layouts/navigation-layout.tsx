@@ -1,9 +1,6 @@
 import AppShellBar from '@/components/ui/shellbar';
-import {
-  NavigationLayout,
-  SideNavigation,
-  SideNavigationItem,
-} from '@ui5/webcomponents-react';
+import SideNav from '@/components/ui/side-navigation';
+import { NavigationLayout } from '@ui5/webcomponents-react';
 import { PropsWithChildren, useState } from 'react';
 
 export default function AppLayout({ children }: PropsWithChildren) {
@@ -18,11 +15,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
         />
       }
       mode="Auto"
-      sideContent={
-        <SideNavigation collapsed={!isNavigationOpen} slot="sideContent">
-          <SideNavigationItem icon="home" text="Home" />
-        </SideNavigation>
-      }
+      sideContent={<SideNav collapsed={!isNavigationOpen} />}
     >
       {children}
     </NavigationLayout>

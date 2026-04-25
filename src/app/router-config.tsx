@@ -1,10 +1,10 @@
-import { QueryClient } from '@tanstack/react-query';
-import { createBrowserRouter } from 'react-router';
 import AppRoot, {
   ErrorBoundary as AppRootErrorBoundary,
 } from '@/app/routes/app/root';
 import { ProtectedRoute } from '@/app/routes/protected-route';
 import { paths } from '@/config/paths';
+import { QueryClient } from '@tanstack/react-query';
+import { createBrowserRouter } from 'react-router';
 
 const convert = (queryClient: QueryClient) => (m: any) => {
   const { clientLoader, clientAction, default: Component, ...rest } = m;
@@ -47,6 +47,11 @@ export const createAppRouter = (queryClient: QueryClient) =>
         {
           path: paths.app.home.path,
           lazy: () => import('./routes/app/home').then(convert(queryClient)),
+        },
+        {
+          path: paths.app.users.path,
+          lazy: () =>
+            import('./routes/users/users-list.tsx').then(convert(queryClient)),
         },
       ],
     },
