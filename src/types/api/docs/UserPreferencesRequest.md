@@ -1,16 +1,15 @@
 # UserPreferencesRequest
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**date_format** | [**DateFormatEnum**](DateFormatEnum.md) |  | [default to undefined]
-**decimal_format** | [**DecimalFormatEnum**](DecimalFormatEnum.md) |  | [default to undefined]
-**time_zone** | **string** |  | [default to undefined]
-**time_format** | [**TimeFormatEnum**](TimeFormatEnum.md) |  | [default to undefined]
-**fiori_theme** | [**FioriThemeEnum**](FioriThemeEnum.md) |  | [default to undefined]
-**show_timezone** | **boolean** |  | [default to undefined]
+| Name               | Type                                          | Description | Notes                  |
+| ------------------ | --------------------------------------------- | ----------- | ---------------------- |
+| **date_format**    | [**DateFormatEnum**](DateFormatEnum.md)       |             | [default to undefined] |
+| **decimal_format** | [**DecimalFormatEnum**](DecimalFormatEnum.md) |             | [default to undefined] |
+| **time_zone**      | **string**                                    |             | [default to undefined] |
+| **time_format**    | [**TimeFormatEnum**](TimeFormatEnum.md)       |             | [default to undefined] |
+| **fiori_theme**    | [**FioriThemeEnum**](FioriThemeEnum.md)       |             | [default to undefined] |
+| **show_timezone**  | **boolean**                                   |             | [default to undefined] |
 
 ## Example
 
@@ -18,12 +17,12 @@ Name | Type | Description | Notes
 import { UserPreferencesRequest } from './api';
 
 const instance: UserPreferencesRequest = {
-    date_format,
-    decimal_format,
-    time_zone,
-    time_format,
-    fiori_theme,
-    show_timezone,
+  date_format,
+  decimal_format,
+  time_zone,
+  time_format,
+  fiori_theme,
+  show_timezone,
 };
 ```
 

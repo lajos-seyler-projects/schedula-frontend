@@ -1,11 +1,10 @@
 # TimezoneResponse
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**__root__** | **{ [key: string]: Array&lt;TimezoneItem&gt;; }** |  | [default to undefined]
+| Name         | Type                                              | Description | Notes                  |
+| ------------ | ------------------------------------------------- | ----------- | ---------------------- |
+| ****root**** | **{ [key: string]: Array&lt;TimezoneItem&gt;; }** |             | [default to undefined] |
 
 ## Example
 
@@ -13,7 +12,7 @@ Name | Type | Description | Notes
 import { TimezoneResponse } from './api';
 
 const instance: TimezoneResponse = {
-    __root__,
+  __root__,
 };
 ```
 

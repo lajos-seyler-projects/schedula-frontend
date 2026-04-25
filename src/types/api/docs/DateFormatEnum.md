@@ -1,19 +1,19 @@
 # DateFormatEnum
 
-* `is` - is * `ed` - ed * `es` - es * `us` - us * `dt` - dt * `cp` - cp
+- `is` - is _ `ed` - ed _ `es` - es _ `us` - us _ `dt` - dt \* `cp` - cp
 
 ## Enum
 
-* `Is` (value: `'is'`)
+- `Is` (value: `'is'`)
 
-* `Ed` (value: `'ed'`)
+- `Ed` (value: `'ed'`)
 
-* `Es` (value: `'es'`)
+- `Es` (value: `'es'`)
 
-* `Us` (value: `'us'`)
+- `Us` (value: `'us'`)
 
-* `Dt` (value: `'dt'`)
+- `Dt` (value: `'dt'`)
 
-* `Cp` (value: `'cp'`)
+- `Cp` (value: `'cp'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

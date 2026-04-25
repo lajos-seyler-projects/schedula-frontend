@@ -1,12 +1,11 @@
 # Choice
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**value** | **string** |  | [default to undefined]
-**label** | **string** |  | [default to undefined]
+| Name      | Type       | Description | Notes                  |
+| --------- | ---------- | ----------- | ---------------------- |
+| **value** | **string** |             | [default to undefined] |
+| **label** | **string** |             | [default to undefined] |
 
 ## Example
 
@@ -14,8 +13,8 @@ Name | Type | Description | Notes
 import { Choice } from './api';
 
 const instance: Choice = {
-    value,
-    label,
+  value,
+  label,
 };
 ```
 

@@ -1,20 +1,20 @@
-# TokenObtainPairRequest
+# PermissionRequest
 
 ## Properties
 
 | Name         | Type       | Description | Notes                  |
 | ------------ | ---------- | ----------- | ---------------------- |
-| **email**    | **string** |             | [default to undefined] |
-| **password** | **string** |             | [default to undefined] |
+| **name**     | **string** |             | [default to undefined] |
+| **codename** | **string** |             | [default to undefined] |
 
 ## Example
 
 ```typescript
-import { TokenObtainPairRequest } from './api';
+import { PermissionRequest } from './api';
 
-const instance: TokenObtainPairRequest = {
-  email,
-  password,
+const instance: PermissionRequest = {
+  name,
+  codename,
 };
 ```
 

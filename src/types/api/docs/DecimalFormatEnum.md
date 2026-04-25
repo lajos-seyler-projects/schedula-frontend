@@ -1,17 +1,17 @@
 # DecimalFormatEnum
 
-* `us` - us * `eu` - eu * `de` - de * `nn` - nn * `ch` - ch
+- `us` - us _ `eu` - eu _ `de` - de _ `nn` - nn _ `ch` - ch
 
 ## Enum
 
-* `Us` (value: `'us'`)
+- `Us` (value: `'us'`)
 
-* `Eu` (value: `'eu'`)
+- `Eu` (value: `'eu'`)
 
-* `De` (value: `'de'`)
+- `De` (value: `'de'`)
 
-* `Nn` (value: `'nn'`)
+- `Nn` (value: `'nn'`)
 
-* `Ch` (value: `'ch'`)
+- `Ch` (value: `'ch'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

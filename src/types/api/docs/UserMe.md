@@ -1,14 +1,13 @@
 # UserMe
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**username** | **string** |  | [optional] [default to undefined]
-**email** | **string** |  | [optional] [default to undefined]
-**first_name** | **string** |  | [optional] [default to undefined]
-**last_name** | **string** |  | [optional] [default to undefined]
+| Name           | Type       | Description | Notes                             |
+| -------------- | ---------- | ----------- | --------------------------------- |
+| **username**   | **string** |             | [optional] [default to undefined] |
+| **email**      | **string** |             | [optional] [default to undefined] |
+| **first_name** | **string** |             | [optional] [default to undefined] |
+| **last_name**  | **string** |             | [optional] [default to undefined] |
 
 ## Example
 
@@ -16,10 +15,10 @@ Name | Type | Description | Notes
 import { UserMe } from './api';
 
 const instance: UserMe = {
-    username,
-    email,
-    first_name,
-    last_name,
+  username,
+  email,
+  first_name,
+  last_name,
 };
 ```
 
