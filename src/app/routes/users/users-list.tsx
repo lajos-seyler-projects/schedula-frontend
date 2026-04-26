@@ -1,15 +1,22 @@
 import GenericListPage from '@/components/layouts/generic-list-page';
 import Pagination from '@/components/ui/pagination';
+import { paths } from '@/config/paths';
 import { useUsers } from '@/features/users/api/get-users';
 import UsersFilterBar from '@/features/users/components/users-filter-bar';
 import { useFilters } from '@/stores/filters-context';
 import { FilterVariant } from '@/types/api';
-import { Title, VariantManagement } from '@ui5/webcomponents-react';
+import {
+  TableRowActionNavigation,
+  Title,
+  VariantManagement,
+} from '@ui5/webcomponents-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const TABLE_ID = 'users';
 
 export default function UsersList() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageSize, setCurrentPageSize] = useState(50);
   const [selectedFilterVariant, setSelectedFilterVariant] =
@@ -28,6 +35,7 @@ export default function UsersList() {
       tableId="users"
       dynamicPageTitleProps={{
         heading: <Title>Systems</Title>,
+        snappedHeading: <Title>Systems</Title>,
       }}
       variantManagement={
         <VariantManagement closeOnItemSelect hideSaveAs hideManageVariants />
@@ -51,6 +59,15 @@ export default function UsersList() {
           onPageSizeChange={(newPageSize) => setCurrentPageSize(newPageSize)}
         />
       }
+      rowActionCount={1}
+      getRowActions={(user) => {
+        return (
+          <TableRowActionNavigation
+            onClick={() => navigate(paths.app.userDetails.getHref(user.uuid))}
+            interactive
+          />
+        );
+      }}
     ></GenericListPage>
   );
 }

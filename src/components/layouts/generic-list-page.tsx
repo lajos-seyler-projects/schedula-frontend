@@ -1,3 +1,4 @@
+import FullHeightFlexBox from '@/components/ui/full-height-flex-box';
 import { useDefaultColumnPreferences } from '@/features/ui-preferences/api/get-default-column-preferences';
 import { useFilterVariants } from '@/features/ui-preferences/api/get-filter-variants';
 import { useUserColumnPreferences } from '@/features/ui-preferences/api/get-user-column-preferences';
@@ -8,6 +9,7 @@ import { FilterVariant } from '@/types/api';
 import { getLongestFieldValues } from '@/utils/get-longest-field-values';
 import { UseQueryResult } from '@tanstack/react-query';
 import {
+  BusyIndicator,
   DynamicPage,
   DynamicPageHeader,
   DynamicPageTitle,
@@ -38,6 +40,7 @@ interface GenericListPageProps<T> extends PropsWithChildren {
   tableId: string;
   dynamicPageTitleProps: {
     heading: UI5WCSlotsNode;
+    snappedHeading: UI5WCSlotsNode;
   };
   variantManagement?: React.ReactElement<VariantManagementPropTypes>;
   selectedFilterVariant: FilterVariant | null;
@@ -52,6 +55,10 @@ interface GenericListPageProps<T> extends PropsWithChildren {
     results: Array<T>;
   }>;
   pagination: React.ReactElement;
+  rowActionCount?: number;
+  getRowActions?: (item: T) => UI5WCSlotsNode;
+  handleRowActionClick?: (event: CustomEvent) => void;
+  getRowKey?: (item: T) => string | number;
 }
 
 export default function GenericListPage<T>({
@@ -63,14 +70,20 @@ export default function GenericListPage<T>({
   filterBar,
   query,
   pagination,
+  rowActionCount,
+  getRowActions,
+  handleRowActionClick,
+  getRowKey,
 }: GenericListPageProps<T>) {
   const filterVariants = useFilterVariants({ tableId });
   const { getTableFilters, loadFromVariant, applyFilters } = useFilters();
   const hasAppliedInitialVariant = useRef(false);
-  const { data: defaultColumnPreferences } = useDefaultColumnPreferences({
+  const defaultColumnPreferencesQuery = useDefaultColumnPreferences({
     tableId,
   });
-  const { data: userColumnPreferences } = useUserColumnPreferences({ tableId });
+  const defaultColumnPreferences = defaultColumnPreferencesQuery.data;
+  const userColumnPreferencesQuery = useUserColumnPreferences({ tableId });
+  const userColumnPreferences = userColumnPreferencesQuery.data;
 
   const columnPreferences = useMemo(() => {
     if (userColumnPreferences?.length) return userColumnPreferences;
@@ -182,20 +195,25 @@ export default function GenericListPage<T>({
     }
   }, [selectedFilterVariant, loadFromVariant, tableId, applyFilters]);
 
-  return (
-    <DynamicPage
-      titleArea={<DynamicPageTitle {...dynamicPageTitleProps} />}
-      headerArea={
-        <DynamicPageHeader>
-          {variantManagementWithProps}
-          {filterBar}
-        </DynamicPageHeader>
-      }
-    >
+  let dynamicPageContent;
+
+  if (
+    defaultColumnPreferencesQuery.isFetching ||
+    userColumnPreferencesQuery.isFetching
+  ) {
+    dynamicPageContent = (
+      <FullHeightFlexBox alignItems="Center" justifyContent="Center">
+        <BusyIndicator active delay={0} />
+      </FullHeightFlexBox>
+    );
+  } else {
+    dynamicPageContent = (
       <FlexBox direction="Column">
         <Table
           loading={query?.isPending || query?.isFetching || query?.isLoading}
           loadingDelay={0}
+          rowActionCount={rowActionCount}
+          onRowActionClick={handleRowActionClick}
           headerRow={
             <TableHeaderRow>
               {visibleColumns.map((col) => (
@@ -214,8 +232,15 @@ export default function GenericListPage<T>({
           }
         >
           {tableData.map((item, index) => {
+            const originalData = item['originalData'] as T;
+            const rowKey = getRowKey ? getRowKey(originalData) : index;
+
             return (
-              <TableRow key={index}>
+              <TableRow
+                key={index}
+                rowKey={rowKey.toString()}
+                actions={getRowActions?.(originalData)}
+              >
                 {visibleColumns.map((col) => (
                   <TableCell key={col.key}>
                     <RenderedCellContent
@@ -231,6 +256,20 @@ export default function GenericListPage<T>({
 
         {pagination}
       </FlexBox>
+    );
+  }
+
+  return (
+    <DynamicPage
+      titleArea={<DynamicPageTitle {...dynamicPageTitleProps} />}
+      headerArea={
+        <DynamicPageHeader>
+          {variantManagementWithProps}
+          {filterBar}
+        </DynamicPageHeader>
+      }
+    >
+      {dynamicPageContent}
     </DynamicPage>
   );
 }
