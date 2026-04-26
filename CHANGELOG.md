@@ -1,3 +1,10 @@
+## 0.4.0 (2026-04-26)
+
+### Feat
+
+- implement edit mode for user information section
+- add initial implementation user details route
+
 ## 0.3.0 (2026-04-25)
 
 ### Feat
