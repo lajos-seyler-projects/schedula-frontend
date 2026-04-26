@@ -306,16 +306,22 @@ const apiInstance = new UsersApi(configuration);
 
 let uuid: string; //UUID of the User. (default to undefined)
 let page: number; //A page number within the paginated result set. (optional) (default to undefined)
+let pageSize: number; //Number of results to return per page. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.usersGroupsList(uuid, page);
+const { status, data } = await apiInstance.usersGroupsList(
+  uuid,
+  page,
+  pageSize,
+);
 ```
 
 ### Parameters
 
-| Name     | Type         | Description                                    | Notes                            |
-| -------- | ------------ | ---------------------------------------------- | -------------------------------- |
-| **uuid** | [**string**] | UUID of the User.                              | defaults to undefined            |
-| **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| Name         | Type         | Description                                    | Notes                            |
+| ------------ | ------------ | ---------------------------------------------- | -------------------------------- |
+| **uuid**     | [**string**] | UUID of the User.                              | defaults to undefined            |
+| **page**     | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| **pageSize** | [**number**] | Number of results to return per page.          | (optional) defaults to undefined |
 
 ### Return type
 
@@ -502,17 +508,21 @@ const apiInstance = new UsersApi(configuration);
 
 let emailIcontains: string; // (optional) (default to undefined)
 let firstNameIcontains: string; // (optional) (default to undefined)
+let isActive: boolean; // (optional) (default to undefined)
 let isSuperuser: boolean; // (optional) (default to undefined)
 let lastNameIcontains: string; // (optional) (default to undefined)
 let page: number; //A page number within the paginated result set. (optional) (default to undefined)
+let pageSize: number; //Number of results to return per page. (optional) (default to undefined)
 let usernameIcontains: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.usersList(
   emailIcontains,
   firstNameIcontains,
+  isActive,
   isSuperuser,
   lastNameIcontains,
   page,
+  pageSize,
   usernameIcontains,
 );
 ```
@@ -523,9 +533,11 @@ const { status, data } = await apiInstance.usersList(
 | ---------------------- | ------------- | ---------------------------------------------- | -------------------------------- |
 | **emailIcontains**     | [**string**]  |                                                | (optional) defaults to undefined |
 | **firstNameIcontains** | [**string**]  |                                                | (optional) defaults to undefined |
+| **isActive**           | [**boolean**] |                                                | (optional) defaults to undefined |
 | **isSuperuser**        | [**boolean**] |                                                | (optional) defaults to undefined |
 | **lastNameIcontains**  | [**string**]  |                                                | (optional) defaults to undefined |
 | **page**               | [**number**]  | A page number within the paginated result set. | (optional) defaults to undefined |
+| **pageSize**           | [**number**]  | Number of results to return per page.          | (optional) defaults to undefined |
 | **usernameIcontains**  | [**string**]  |                                                | (optional) defaults to undefined |
 
 ### Return type

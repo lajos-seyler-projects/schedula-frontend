@@ -21,8 +21,13 @@ const apiInstance = new PermissionsApi(configuration);
 
 let nameIcontains: string; // (optional) (default to undefined)
 let page: number; //A page number within the paginated result set. (optional) (default to undefined)
+let pageSize: number; //Number of results to return per page. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.permissionsList(nameIcontains, page);
+const { status, data } = await apiInstance.permissionsList(
+  nameIcontains,
+  page,
+  pageSize,
+);
 ```
 
 ### Parameters
@@ -31,6 +36,7 @@ const { status, data } = await apiInstance.permissionsList(nameIcontains, page);
 | ----------------- | ------------ | ---------------------------------------------- | -------------------------------- |
 | **nameIcontains** | [**string**] |                                                | (optional) defaults to undefined |
 | **page**          | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| **pageSize**      | [**number**] | Number of results to return per page.          | (optional) defaults to undefined |
 
 ### Return type
 

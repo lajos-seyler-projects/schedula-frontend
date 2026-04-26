@@ -27,7 +27,11 @@ export const paths = {
     },
     users: {
       path: 'users',
-      getHref: () => '/users',
+      getHref: () => '/app/users',
+    },
+    userDetails: {
+      path: 'users/:uuid',
+      getHref: (uuid: string) => `/app/users/${uuid}`,
     },
   },
 };
