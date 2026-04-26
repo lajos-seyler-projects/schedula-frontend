@@ -127,8 +127,13 @@ const apiInstance = new GroupsApi(configuration);
 
 let nameIcontains: string; // (optional) (default to undefined)
 let page: number; //A page number within the paginated result set. (optional) (default to undefined)
+let pageSize: number; //Number of results to return per page. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.groupsList(nameIcontains, page);
+const { status, data } = await apiInstance.groupsList(
+  nameIcontains,
+  page,
+  pageSize,
+);
 ```
 
 ### Parameters
@@ -137,6 +142,7 @@ const { status, data } = await apiInstance.groupsList(nameIcontains, page);
 | ----------------- | ------------ | ---------------------------------------------- | -------------------------------- |
 | **nameIcontains** | [**string**] |                                                | (optional) defaults to undefined |
 | **page**          | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| **pageSize**      | [**number**] | Number of results to return per page.          | (optional) defaults to undefined |
 
 ### Return type
 
@@ -361,16 +367,22 @@ const apiInstance = new GroupsApi(configuration);
 
 let name: string; //Name of the group. (default to undefined)
 let page: number; //A page number within the paginated result set. (optional) (default to undefined)
+let pageSize: number; //Number of results to return per page. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.groupsPermissionsList(name, page);
+const { status, data } = await apiInstance.groupsPermissionsList(
+  name,
+  page,
+  pageSize,
+);
 ```
 
 ### Parameters
 
-| Name     | Type         | Description                                    | Notes                            |
-| -------- | ------------ | ---------------------------------------------- | -------------------------------- |
-| **name** | [**string**] | Name of the group.                             | defaults to undefined            |
-| **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| Name         | Type         | Description                                    | Notes                            |
+| ------------ | ------------ | ---------------------------------------------- | -------------------------------- |
+| **name**     | [**string**] | Name of the group.                             | defaults to undefined            |
+| **page**     | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| **pageSize** | [**number**] | Number of results to return per page.          | (optional) defaults to undefined |
 
 ### Return type
 
@@ -786,16 +798,22 @@ const apiInstance = new GroupsApi(configuration);
 
 let name: string; //Name of the group. (default to undefined)
 let page: number; //A page number within the paginated result set. (optional) (default to undefined)
+let pageSize: number; //Number of results to return per page. (optional) (default to undefined)
 
-const { status, data } = await apiInstance.groupsUsersList(name, page);
+const { status, data } = await apiInstance.groupsUsersList(
+  name,
+  page,
+  pageSize,
+);
 ```
 
 ### Parameters
 
-| Name     | Type         | Description                                    | Notes                            |
-| -------- | ------------ | ---------------------------------------------- | -------------------------------- |
-| **name** | [**string**] | Name of the group.                             | defaults to undefined            |
-| **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| Name         | Type         | Description                                    | Notes                            |
+| ------------ | ------------ | ---------------------------------------------- | -------------------------------- |
+| **name**     | [**string**] | Name of the group.                             | defaults to undefined            |
+| **page**     | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined |
+| **pageSize** | [**number**] | Number of results to return per page.          | (optional) defaults to undefined |
 
 ### Return type
 

@@ -9,6 +9,7 @@
 | **email**        | **string**  |                                                                                  | [default to undefined]            |
 | **first_name**   | **string**  |                                                                                  | [optional] [default to undefined] |
 | **last_name**    | **string**  |                                                                                  | [optional] [default to undefined] |
+| **is_active**    | **boolean** | The user account is active                                                       | [optional] [default to undefined] |
 | **is_superuser** | **boolean** | Designates that this user has all permissions without explicitly assigning them. | [optional] [default to undefined] |
 | **date_joined**  | **string**  |                                                                                  | [optional] [default to undefined] |
 | **last_login**   | **string**  |                                                                                  | [optional] [default to undefined] |
@@ -24,6 +25,7 @@ const instance: UserDetails = {
   email,
   first_name,
   last_name,
+  is_active,
   is_superuser,
   date_joined,
   last_login,

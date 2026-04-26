@@ -28,7 +28,7 @@ import {
   toPathString,
 } from './common';
 // @ts-ignore
-import { BASE_PATH, BaseAPI, RequiredError, operationServerMap } from './base';
+import { BASE_PATH, BaseAPI, operationServerMap } from './base';
 
 export interface ActivationResponse {
   message: string;
@@ -187,6 +187,10 @@ export interface PatchedUserSlimRequest {
   first_name?: string;
   last_name?: string;
   /**
+   * The user account is active
+   */
+  is_active?: boolean;
+  /**
    * Designates that this user has all permissions without explicitly assigning them.
    */
   is_superuser?: boolean;
@@ -256,6 +260,10 @@ export interface UserDetails {
   first_name?: string;
   last_name?: string;
   /**
+   * The user account is active
+   */
+  is_active?: boolean;
+  /**
    * Designates that this user has all permissions without explicitly assigning them.
    */
   is_superuser?: boolean;
@@ -313,6 +321,10 @@ export interface UserSlim {
   first_name?: string;
   last_name?: string;
   /**
+   * The user account is active
+   */
+  is_active?: boolean;
+  /**
    * Designates that this user has all permissions without explicitly assigning them.
    */
   is_superuser?: boolean;
@@ -322,6 +334,10 @@ export interface UserSlimRequest {
   email: string;
   first_name?: string;
   last_name?: string;
+  /**
+   * The user account is active
+   */
+  is_active?: boolean;
   /**
    * Designates that this user has all permissions without explicitly assigning them.
    */
@@ -1713,12 +1729,14 @@ export const GroupsApiAxiosParamCreator = function (
      *
      * @param {string} [nameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     groupsList: async (
       nameIcontains?: string,
       page?: number,
+      pageSize?: number,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/groups/`;
@@ -1747,6 +1765,10 @@ export const GroupsApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter['page_size'] = pageSize;
       }
 
       localVarHeaderParameter['Accept'] = 'application/json';
@@ -1994,12 +2016,14 @@ export const GroupsApiAxiosParamCreator = function (
      *
      * @param {string} name Name of the group.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     groupsPermissionsList: async (
       name: string,
       page?: number,
+      pageSize?: number,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'name' is not null or undefined
@@ -2029,6 +2053,10 @@ export const GroupsApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter['page_size'] = pageSize;
       }
 
       localVarHeaderParameter['Accept'] = 'application/json';
@@ -2513,12 +2541,14 @@ export const GroupsApiAxiosParamCreator = function (
      *
      * @param {string} name Name of the group.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     groupsUsersList: async (
       name: string,
       page?: number,
+      pageSize?: number,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'name' is not null or undefined
@@ -2548,6 +2578,10 @@ export const GroupsApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter['page_size'] = pageSize;
       }
 
       localVarHeaderParameter['Accept'] = 'application/json';
@@ -2821,12 +2855,14 @@ export const GroupsApiFp = function (configuration?: Configuration) {
      *
      * @param {string} [nameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async groupsList(
       nameIcontains?: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (
@@ -2837,6 +2873,7 @@ export const GroupsApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.groupsList(
         nameIcontains,
         page,
+        pageSize,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -2985,12 +3022,14 @@ export const GroupsApiFp = function (configuration?: Configuration) {
      *
      * @param {string} name Name of the group.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async groupsPermissionsList(
       name: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (
@@ -3002,6 +3041,7 @@ export const GroupsApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.groupsPermissionsList(
           name,
           page,
+          pageSize,
           options,
         );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -3276,12 +3316,14 @@ export const GroupsApiFp = function (configuration?: Configuration) {
      *
      * @param {string} name Name of the group.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async groupsUsersList(
       name: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (
@@ -3292,6 +3334,7 @@ export const GroupsApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.groupsUsersList(
         name,
         page,
+        pageSize,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -3453,16 +3496,18 @@ export const GroupsApiFactory = function (
      *
      * @param {string} [nameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     groupsList(
       nameIcontains?: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<PaginatedGroupList> {
       return localVarFp
-        .groupsList(nameIcontains, page, options)
+        .groupsList(nameIcontains, page, pageSize, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -3531,16 +3576,18 @@ export const GroupsApiFactory = function (
      *
      * @param {string} name Name of the group.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     groupsPermissionsList(
       name: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<PaginatedPermissionList> {
       return localVarFp
-        .groupsPermissionsList(name, page, options)
+        .groupsPermissionsList(name, page, pageSize, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -3680,16 +3727,18 @@ export const GroupsApiFactory = function (
      *
      * @param {string} name Name of the group.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     groupsUsersList(
       name: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<PaginatedUserSlimList> {
       return localVarFp
-        .groupsUsersList(name, page, options)
+        .groupsUsersList(name, page, pageSize, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -3782,16 +3831,18 @@ export class GroupsApi extends BaseAPI {
    *
    * @param {string} [nameIcontains]
    * @param {number} [page] A page number within the paginated result set.
+   * @param {number} [pageSize] Number of results to return per page.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    */
   public groupsList(
     nameIcontains?: string,
     page?: number,
+    pageSize?: number,
     options?: RawAxiosRequestConfig,
   ) {
     return GroupsApiFp(this.configuration)
-      .groupsList(nameIcontains, page, options)
+      .groupsList(nameIcontains, page, pageSize, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -3865,16 +3916,18 @@ export class GroupsApi extends BaseAPI {
    *
    * @param {string} name Name of the group.
    * @param {number} [page] A page number within the paginated result set.
+   * @param {number} [pageSize] Number of results to return per page.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    */
   public groupsPermissionsList(
     name: string,
     page?: number,
+    pageSize?: number,
     options?: RawAxiosRequestConfig,
   ) {
     return GroupsApiFp(this.configuration)
-      .groupsPermissionsList(name, page, options)
+      .groupsPermissionsList(name, page, pageSize, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -4020,16 +4073,18 @@ export class GroupsApi extends BaseAPI {
    *
    * @param {string} name Name of the group.
    * @param {number} [page] A page number within the paginated result set.
+   * @param {number} [pageSize] Number of results to return per page.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    */
   public groupsUsersList(
     name: string,
     page?: number,
+    pageSize?: number,
     options?: RawAxiosRequestConfig,
   ) {
     return GroupsApiFp(this.configuration)
-      .groupsUsersList(name, page, options)
+      .groupsUsersList(name, page, pageSize, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -4543,12 +4598,14 @@ export const PermissionsApiAxiosParamCreator = function (
      *
      * @param {string} [nameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     permissionsList: async (
       nameIcontains?: string,
       page?: number,
+      pageSize?: number,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/permissions/`;
@@ -4577,6 +4634,10 @@ export const PermissionsApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter['page_size'] = pageSize;
       }
 
       localVarHeaderParameter['Accept'] = 'application/json';
@@ -4660,12 +4721,14 @@ export const PermissionsApiFp = function (configuration?: Configuration) {
      *
      * @param {string} [nameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async permissionsList(
       nameIcontains?: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (
@@ -4676,6 +4739,7 @@ export const PermissionsApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.permissionsList(
         nameIcontains,
         page,
+        pageSize,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -4735,16 +4799,18 @@ export const PermissionsApiFactory = function (
      *
      * @param {string} [nameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     permissionsList(
       nameIcontains?: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<PaginatedPermissionList> {
       return localVarFp
-        .permissionsList(nameIcontains, page, options)
+        .permissionsList(nameIcontains, page, pageSize, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -4772,16 +4838,18 @@ export class PermissionsApi extends BaseAPI {
    *
    * @param {string} [nameIcontains]
    * @param {number} [page] A page number within the paginated result set.
+   * @param {number} [pageSize] Number of results to return per page.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    */
   public permissionsList(
     nameIcontains?: string,
     page?: number,
+    pageSize?: number,
     options?: RawAxiosRequestConfig,
   ) {
     return PermissionsApiFp(this.configuration)
-      .permissionsList(nameIcontains, page, options)
+      .permissionsList(nameIcontains, page, pageSize, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -6892,12 +6960,14 @@ export const UsersApiAxiosParamCreator = function (
      *
      * @param {string} uuid UUID of the User.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     usersGroupsList: async (
       uuid: string,
       page?: number,
+      pageSize?: number,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'uuid' is not null or undefined
@@ -6927,6 +6997,10 @@ export const UsersApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter['page_size'] = pageSize;
       }
 
       localVarHeaderParameter['Accept'] = 'application/json';
@@ -7129,9 +7203,11 @@ export const UsersApiAxiosParamCreator = function (
      *
      * @param {string} [emailIcontains]
      * @param {string} [firstNameIcontains]
+     * @param {boolean} [isActive]
      * @param {boolean} [isSuperuser]
      * @param {string} [lastNameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {string} [usernameIcontains]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7139,9 +7215,11 @@ export const UsersApiAxiosParamCreator = function (
     usersList: async (
       emailIcontains?: string,
       firstNameIcontains?: string,
+      isActive?: boolean,
       isSuperuser?: boolean,
       lastNameIcontains?: string,
       page?: number,
+      pageSize?: number,
       usernameIcontains?: string,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -7173,6 +7251,10 @@ export const UsersApiAxiosParamCreator = function (
         localVarQueryParameter['first_name__icontains'] = firstNameIcontains;
       }
 
+      if (isActive !== undefined) {
+        localVarQueryParameter['is_active'] = isActive;
+      }
+
       if (isSuperuser !== undefined) {
         localVarQueryParameter['is_superuser'] = isSuperuser;
       }
@@ -7183,6 +7265,10 @@ export const UsersApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter['page_size'] = pageSize;
       }
 
       if (usernameIcontains !== undefined) {
@@ -7572,12 +7658,14 @@ export const UsersApiFp = function (configuration?: Configuration) {
      *
      * @param {string} uuid UUID of the User.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async usersGroupsList(
       uuid: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (
@@ -7588,6 +7676,7 @@ export const UsersApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.usersGroupsList(
         uuid,
         page,
+        pageSize,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -7708,9 +7797,11 @@ export const UsersApiFp = function (configuration?: Configuration) {
      *
      * @param {string} [emailIcontains]
      * @param {string} [firstNameIcontains]
+     * @param {boolean} [isActive]
      * @param {boolean} [isSuperuser]
      * @param {string} [lastNameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {string} [usernameIcontains]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7718,9 +7809,11 @@ export const UsersApiFp = function (configuration?: Configuration) {
     async usersList(
       emailIcontains?: string,
       firstNameIcontains?: string,
+      isActive?: boolean,
       isSuperuser?: boolean,
       lastNameIcontains?: string,
       page?: number,
+      pageSize?: number,
       usernameIcontains?: string,
       options?: RawAxiosRequestConfig,
     ): Promise<
@@ -7732,9 +7825,11 @@ export const UsersApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.usersList(
         emailIcontains,
         firstNameIcontains,
+        isActive,
         isSuperuser,
         lastNameIcontains,
         page,
+        pageSize,
         usernameIcontains,
         options,
       );
@@ -7951,16 +8046,18 @@ export const UsersApiFactory = function (
      *
      * @param {string} uuid UUID of the User.
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     usersGroupsList(
       uuid: string,
       page?: number,
+      pageSize?: number,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<PaginatedGroupList> {
       return localVarFp
-        .usersGroupsList(uuid, page, options)
+        .usersGroupsList(uuid, page, pageSize, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -8019,9 +8116,11 @@ export const UsersApiFactory = function (
      *
      * @param {string} [emailIcontains]
      * @param {string} [firstNameIcontains]
+     * @param {boolean} [isActive]
      * @param {boolean} [isSuperuser]
      * @param {string} [lastNameIcontains]
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [pageSize] Number of results to return per page.
      * @param {string} [usernameIcontains]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8029,9 +8128,11 @@ export const UsersApiFactory = function (
     usersList(
       emailIcontains?: string,
       firstNameIcontains?: string,
+      isActive?: boolean,
       isSuperuser?: boolean,
       lastNameIcontains?: string,
       page?: number,
+      pageSize?: number,
       usernameIcontains?: string,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<PaginatedUserSlimList> {
@@ -8039,9 +8140,11 @@ export const UsersApiFactory = function (
         .usersList(
           emailIcontains,
           firstNameIcontains,
+          isActive,
           isSuperuser,
           lastNameIcontains,
           page,
+          pageSize,
           usernameIcontains,
           options,
         )
@@ -8197,16 +8300,18 @@ export class UsersApi extends BaseAPI {
    *
    * @param {string} uuid UUID of the User.
    * @param {number} [page] A page number within the paginated result set.
+   * @param {number} [pageSize] Number of results to return per page.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    */
   public usersGroupsList(
     uuid: string,
     page?: number,
+    pageSize?: number,
     options?: RawAxiosRequestConfig,
   ) {
     return UsersApiFp(this.configuration)
-      .usersGroupsList(uuid, page, options)
+      .usersGroupsList(uuid, page, pageSize, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -8269,9 +8374,11 @@ export class UsersApi extends BaseAPI {
    *
    * @param {string} [emailIcontains]
    * @param {string} [firstNameIcontains]
+   * @param {boolean} [isActive]
    * @param {boolean} [isSuperuser]
    * @param {string} [lastNameIcontains]
    * @param {number} [page] A page number within the paginated result set.
+   * @param {number} [pageSize] Number of results to return per page.
    * @param {string} [usernameIcontains]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -8279,9 +8386,11 @@ export class UsersApi extends BaseAPI {
   public usersList(
     emailIcontains?: string,
     firstNameIcontains?: string,
+    isActive?: boolean,
     isSuperuser?: boolean,
     lastNameIcontains?: string,
     page?: number,
+    pageSize?: number,
     usernameIcontains?: string,
     options?: RawAxiosRequestConfig,
   ) {
@@ -8289,9 +8398,11 @@ export class UsersApi extends BaseAPI {
       .usersList(
         emailIcontains,
         firstNameIcontains,
+        isActive,
         isSuperuser,
         lastNameIcontains,
         page,
+        pageSize,
         usernameIcontains,
         options,
       )

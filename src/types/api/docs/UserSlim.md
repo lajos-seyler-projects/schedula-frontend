@@ -9,6 +9,7 @@
 | **email**        | **string**  |                                                                                  | [default to undefined]            |
 | **first_name**   | **string**  |                                                                                  | [optional] [default to undefined] |
 | **last_name**    | **string**  |                                                                                  | [optional] [default to undefined] |
+| **is_active**    | **boolean** | The user account is active                                                       | [optional] [default to undefined] |
 | **is_superuser** | **boolean** | Designates that this user has all permissions without explicitly assigning them. | [optional] [default to undefined] |
 
 ## Example
@@ -22,6 +23,7 @@ const instance: UserSlim = {
   email,
   first_name,
   last_name,
+  is_active,
   is_superuser,
 };
 ```
