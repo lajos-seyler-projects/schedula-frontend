@@ -1,7 +1,7 @@
 import { MainErrorFallback } from '@/components/errors/main';
 import { useUserPreferences } from '@/features/users/api/get-user-preferences';
 import { useAuth } from '@/hooks/useAuth';
-import { FiltersProvider } from '@/stores/filters-context';
+import { FiltersProvider } from '@/providers/filters-provider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { setTheme } from '@ui5/webcomponents-base';
 import { ThemeProvider } from '@ui5/webcomponents-react';

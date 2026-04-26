@@ -11,6 +11,8 @@ export default function UserPreferenceDatetime({
   const { data: userPreferencesResponse } = useUserPreferences();
   const preferences = userPreferencesResponse?.data;
 
+  if (!datetime || !datetime.isValid()) return '';
+
   if (!preferences) return datetime.toISOString();
 
   const momentDate = datetime.tz(preferences.time_zone);

@@ -1,20 +1,20 @@
 import Pagination from '@/components/ui/pagination';
 import { useUser } from '@/features/users/api/get-user';
 import { useUserGroups } from '@/features/users/api/get-user-groups';
+import { useUpdateUser } from '@/features/users/api/update-user';
+import UserInformationContent from '@/features/users/components/user-details/user-information-content';
+import { UserDetails } from '@/types/api';
 import {
-  CheckBox,
-  Form,
-  FormItem,
-  Label,
+  Button,
   ObjectPage,
   ObjectPageSection,
+  ObjectPageSubSection,
   ObjectPageTitle,
   Table,
   TableCell,
   TableHeaderCell,
   TableHeaderRow,
   TableRow,
-  Text,
   Title,
 } from '@ui5/webcomponents-react';
 import { useState } from 'react';
@@ -25,17 +25,63 @@ export default function UserDetailsRoute() {
   const uuid = params.uuid as string;
   const [groupsPage, setGroupsPage] = useState(1);
   const [groupsPageSize, setGroupsPageSize] = useState(10);
+  const [isUserDetailsEditing, setIsUserDetailsEditing] = useState(false);
 
   const { data: userResponse } = useUser({ uuid });
+  const userDetails = userResponse?.data;
+  const [userDraft, setUserDraft] = useState<UserDetails | null>(null);
+  const displayed = isUserDetailsEditing ? userDraft : userDetails;
+
+  const updateUserMutation = useUpdateUser({ uuid });
+
   const { data: userGroupsResponse } = useUserGroups({
     uuid,
     page: groupsPage,
     pageSize: groupsPageSize,
   });
 
-  const userDetails = userResponse?.data;
   const fullName =
     `${userDetails?.first_name} ${userDetails?.last_name}`.trim();
+
+  function handleUserDetailsChange(
+    field: keyof UserDetails,
+    value: string | boolean,
+  ) {
+    setUserDraft((prev) => {
+      if (prev === null) return null;
+      return { ...prev, [field]: value };
+    });
+  }
+
+  function handleUserDetailsEdit() {
+    setUserDraft(userDetails || null);
+    setIsUserDetailsEditing(true);
+  }
+
+  function handleUserDetailsSave() {
+    updateUserMutation.mutate(
+      {
+        uuid,
+        data: {
+          username: userDraft?.username,
+          first_name: userDraft?.first_name,
+          last_name: userDraft?.last_name,
+          is_active: userDraft?.is_active,
+          is_superuser: userDraft?.is_superuser,
+        },
+      },
+      {
+        onSuccess: () => {
+          setIsUserDetailsEditing(false);
+        },
+      },
+    );
+  }
+
+  const handleCancel = () => {
+    setIsUserDetailsEditing(false);
+    setUserDraft(null);
+  };
 
   return (
     <ObjectPage
@@ -50,26 +96,33 @@ export default function UserDetailsRoute() {
       }
     >
       <ObjectPageSection id="user-information" titleText="User Information">
-        <Form>
-          <FormItem labelContent={<Label showColon>Username</Label>}>
-            <Text emptyIndicatorMode="On">{userDetails?.username}</Text>
-          </FormItem>
-          <FormItem labelContent={<Label showColon>Email</Label>}>
-            <Text emptyIndicatorMode="On">{userDetails?.email}</Text>
-          </FormItem>
-          <FormItem labelContent={<Label showColon>First Name</Label>}>
-            <Text emptyIndicatorMode="On">{userDetails?.first_name}</Text>
-          </FormItem>
-          <FormItem labelContent={<Label showColon>Last Name</Label>}>
-            <Text emptyIndicatorMode="On">{userDetails?.last_name}</Text>
-          </FormItem>
-          <FormItem labelContent={<Label showColon>Is Active</Label>}>
-            <CheckBox checked={userDetails?.is_active} displayOnly />
-          </FormItem>
-          <FormItem labelContent={<Label showColon>Is Superuser</Label>}>
-            <CheckBox checked={userDetails?.is_superuser} displayOnly />
-          </FormItem>
-        </Form>
+        <ObjectPageSubSection
+          id="user-information-subsection"
+          titleText="User Information"
+          actions={
+            <>
+              {!isUserDetailsEditing && (
+                <Button design="Emphasized" onClick={handleUserDetailsEdit}>
+                  Edit
+                </Button>
+              )}
+              {isUserDetailsEditing && (
+                <>
+                  <Button design="Emphasized" onClick={handleUserDetailsSave}>
+                    Save
+                  </Button>
+                  <Button onClick={handleCancel}>Cancel</Button>
+                </>
+              )}
+            </>
+          }
+        >
+          <UserInformationContent
+            userDetails={displayed}
+            isEditing={isUserDetailsEditing}
+            handleChange={handleUserDetailsChange}
+          />
+        </ObjectPageSubSection>
       </ObjectPageSection>
 
       <ObjectPageSection id="groups" titleText="Groups">

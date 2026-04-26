@@ -3,7 +3,7 @@ import Pagination from '@/components/ui/pagination';
 import { paths } from '@/config/paths';
 import { useUsers } from '@/features/users/api/get-users';
 import UsersFilterBar from '@/features/users/components/users-filter-bar';
-import { useFilters } from '@/stores/filters-context';
+import { useFilters } from '@/hooks/use-filters';
 import { FilterVariant } from '@/types/api';
 import {
   TableRowActionNavigation,

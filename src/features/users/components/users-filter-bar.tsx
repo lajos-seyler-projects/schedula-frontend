@@ -1,7 +1,7 @@
 import { useFilterDefinitions } from '@/features/ui-preferences/api/get-filter-definitions';
 import { useUpdateUserFilterPreferences } from '@/features/ui-preferences/api/update-user-filter-preferences';
 import { transformFilterDefinitions } from '@/features/ui-preferences/utils/transform-filter-defintions';
-import { useFilters } from '@/stores/filters-context';
+import { useFilters } from '@/hooks/use-filters';
 import { OnFiltersDialogSaveEvent } from '@/types/ui5';
 import {
   FilterBar,

@@ -4,7 +4,7 @@ import { useFilterVariants } from '@/features/ui-preferences/api/get-filter-vari
 import { useUserColumnPreferences } from '@/features/ui-preferences/api/get-user-column-preferences';
 import RenderedCellContent from '@/features/ui-preferences/components/rendered-cell-content';
 import { resolveExpression } from '@/features/ui-preferences/utils/resolve-expression';
-import { useFilters } from '@/stores/filters-context';
+import { useFilters } from '@/hooks/use-filters';
 import { FilterVariant } from '@/types/api';
 import { getLongestFieldValues } from '@/utils/get-longest-field-values';
 import { UseQueryResult } from '@tanstack/react-query';
