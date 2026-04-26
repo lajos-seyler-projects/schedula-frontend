@@ -1,8 +1,10 @@
 import Pagination from '@/components/ui/pagination';
+import { PERMISSIONS } from '@/config/permissions';
 import { useUser } from '@/features/users/api/get-user';
 import { useUserGroups } from '@/features/users/api/get-user-groups';
 import { useUpdateUser } from '@/features/users/api/update-user';
 import UserInformationContent from '@/features/users/components/user-details/user-information-content';
+import { Authorization } from '@/lib/authorization';
 import { UserDetails } from '@/types/api';
 import {
   Button,
@@ -102,9 +104,11 @@ export default function UserDetailsRoute() {
           actions={
             <>
               {!isUserDetailsEditing && (
-                <Button design="Emphasized" onClick={handleUserDetailsEdit}>
-                  Edit
-                </Button>
+                <Authorization requiredPermissions={[PERMISSIONS.UPDATE_USER]}>
+                  <Button design="Emphasized" onClick={handleUserDetailsEdit}>
+                    Edit
+                  </Button>
+                </Authorization>
               )}
               {isUserDetailsEditing && (
                 <>
