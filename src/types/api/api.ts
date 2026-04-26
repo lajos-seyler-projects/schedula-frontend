@@ -171,6 +171,10 @@ export interface PatchedUserMeRequest {
   first_name?: string;
   last_name?: string;
   password?: string;
+  /**
+   * Designates that this user has all permissions without explicitly assigning them.
+   */
+  is_superuser?: boolean;
 }
 export interface PatchedUserPreferencesRequest {
   date_format?: DateFormatEnum;
@@ -286,6 +290,11 @@ export interface UserMe {
   email?: string;
   first_name?: string;
   last_name?: string;
+  /**
+   * Designates that this user has all permissions without explicitly assigning them.
+   */
+  is_superuser?: boolean;
+  permissions: Array<string>;
 }
 export interface UserPreferences {
   id: number;
