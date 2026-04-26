@@ -2,13 +2,14 @@
 
 ## Properties
 
-| Name           | Type       | Description | Notes                             |
-| -------------- | ---------- | ----------- | --------------------------------- |
-| **username**   | **string** |             | [optional] [default to undefined] |
-| **email**      | **string** |             | [optional] [default to undefined] |
-| **first_name** | **string** |             | [optional] [default to undefined] |
-| **last_name**  | **string** |             | [optional] [default to undefined] |
-| **password**   | **string** |             | [optional] [default to undefined] |
+| Name             | Type        | Description                                                                      | Notes                             |
+| ---------------- | ----------- | -------------------------------------------------------------------------------- | --------------------------------- |
+| **username**     | **string**  |                                                                                  | [optional] [default to undefined] |
+| **email**        | **string**  |                                                                                  | [optional] [default to undefined] |
+| **first_name**   | **string**  |                                                                                  | [optional] [default to undefined] |
+| **last_name**    | **string**  |                                                                                  | [optional] [default to undefined] |
+| **password**     | **string**  |                                                                                  | [optional] [default to undefined] |
+| **is_superuser** | **boolean** | Designates that this user has all permissions without explicitly assigning them. | [optional] [default to undefined] |
 
 ## Example
 
@@ -21,6 +22,7 @@ const instance: PatchedUserMeRequest = {
   first_name,
   last_name,
   password,
+  is_superuser,
 };
 ```
 
