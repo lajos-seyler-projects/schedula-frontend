@@ -37,7 +37,7 @@
     "@types/react-dom": "19.2.3",
     "@ui5/webcomponents-cypress-commands": "2.21.3",
     "@vitejs/plugin-react": "6.0.1",
-    "cypress": "15.14.1",
+    "cypress": "15.14.2",
     "eslint": "10.2.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
