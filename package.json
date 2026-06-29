@@ -22,7 +22,7 @@
     "@ui5/webcomponents-fiori": "2.23.1",
     "@ui5/webcomponents-icons": "2.23.1",
     "@ui5/webcomponents-react": "2.23.1",
-    "axios": "^1.18.0",
+    "axios": "^1.18.1",
     "moment-timezone": "^0.6.2",
     "react": "19.2.7",
     "react-dom": "19.2.7",
