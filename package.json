@@ -26,7 +26,7 @@
     "moment-timezone": "^0.6.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-error-boundary": "^6.1.5",
+    "react-error-boundary": "^6.1.6",
     "react-router": "8.4.0",
     "styled-components": "^6.5.3",
     "zustand": "^5.0.15"
